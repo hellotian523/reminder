@@ -1,0 +1,59 @@
+/** app.wxss **/
+page {
+  --primary-color: #3B82F6;
+  --primary-light: #EFF6FF;
+  --primary-hover: #2563EB;
+  --bg-color: #F8FAFC;
+  --card-bg: #FFFFFF;
+  --text-main: #1E293B;
+  --text-muted: #64748B;
+  --text-light: #94A3B8;
+  --border-color: #E2E8F0;
+  --danger-color: #EF4444;
+  --danger-light: #FEF2F2;
+  --warning-color: #F59E0B;
+  --warning-light: #FFFBEB;
+  --success-color: #10B981;
+  --success-light: #ECFDF5;
+  
+  background-color: var(--bg-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-main);
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.container {
+  padding: 24rpx;
+  min-height: 100vh;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(15, 23, 42, 0.04);
+  border: 1rpx solid var(--border-color);
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 16rpx;
+  font-size: 30rpx;
+  padding: 20rpx 0;
+  text-align: center;
+  box-shadow: 0 6rpx 16rpx rgba(59, 130, 246, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-primary:active {
+  opacity: 0.85;
+  transform: scale(0.98);
+}
