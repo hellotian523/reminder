@@ -1,0 +1,9 @@
+{
+  "name": "todoApi",
+  "version": "1.0.0",
+  "description": "微信待办备忘录 CRUD 与提醒计算云函数",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}
