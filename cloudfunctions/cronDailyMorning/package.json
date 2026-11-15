@@ -1,0 +1,9 @@
+{
+  "name": "cronDailyMorning",
+  "version": "1.0.0",
+  "description": "每日晨报聚合定时触发云函数",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}
