@@ -1,0 +1,113 @@
+<!-- pages/index/index.wxml -->
+<view class="container">
+  <!-- 顶部标题栏与设置按钮 -->
+  <view class="header-bar">
+    <view class="header-left">
+      <view class="app-title">我的备忘与待办</view>
+      <view class="app-subtitle">{{todayDateStr}}</view>
+    </view>
+    <view class="settings-btn" bindtap="navToSettings">
+      <text class="settings-icon">⚙️</text>
+    </view>
+  </view>
+
+  <!-- 数据统计卡片看板 -->
+  <view class="stats-grid">
+    <view class="stat-card" bindtap="switchTabByStat" data-tab="all">
+      <view class="stat-num">{{pendingCount}}</view>
+      <view class="stat-label">待办总数</view>
+    </view>
+    <view class="stat-card stat-today" bindtap="switchTabByStat" data-tab="today">
+      <view class="stat-num text-primary">{{todayCount}}</view>
+      <view class="stat-label">今日必做</view>
+    </view>
+    <view class="stat-card {{overdueCount > 0 ? 'stat-overdue' : ''}}" bindtap="switchTabByStat" data-tab="today">
+      <view class="stat-num {{overdueCount > 0 ? 'text-danger' : ''}}">{{overdueCount}}</view>
+      <view class="stat-label">已逾期</view>
+    </view>
+  </view>
+
+  <!-- 分类 Tab 切换 -->
+  <view class="tabs-container">
+    <view 
+      class="tab-item {{currentTab === 'today' ? 'tab-active' : ''}}" 
+      bindtap="onTabChange" 
+      data-tab="today"
+    >
+      今日必做
+    </view>
+    <view 
+      class="tab-item {{currentTab === 'all' ? 'tab-active' : ''}}" 
+      bindtap="onTabChange" 
+      data-tab="all"
+    >
+      全部待办
+    </view>
+    <view 
+      class="tab-item {{currentTab === 'done' ? 'tab-active' : ''}}" 
+      bindtap="onTabChange" 
+      data-tab="done"
+    >
+      已完成
+    </view>
+  </view>
+
+  <!-- 待办列表 -->
+  <view class="todo-list">
+    <block wx:if="{{loading && todos.length === 0}}">
+      <view class="loading-box">
+        <text>加载清单中...</text>
+      </view>
+    </block>
+
+    <block wx:elif="{{todos.length === 0}}">
+      <view class="empty-box">
+        <text class="empty-icon">🏖️</text>
+        <view class="empty-title">{{currentTab === 'done' ? '暂无已完成的事项' : '太棒了，当前没有待办事项！'}}</view>
+        <view class="empty-desc" wx:if="{{currentTab !== 'done'}}">点击右下角 “+” 按钮，添加一项新待办并设定 DDL 提醒吧</view>
+      </view>
+    </block>
+
+    <block wx:else>
+      <view 
+        class="todo-card {{item.status === 'done' ? 'todo-done' : ''}} {{item.isOverdue ? 'todo-overdue-card' : ''}}" 
+        wx:for="{{todos}}" 
+        wx:key="_id"
+        bindlongpress="onLongPressTodo"
+        data-id="{{item._id}}"
+      >
+        <!-- 复选框勾选完成 -->
+        <view class="check-box-wrap" catchtap="onToggleStatus" data-id="{{item._id}}" data-status="{{item.status}}">
+          <view class="checkbox {{item.status === 'done' ? 'checked' : ''}}">
+            <text wx:if="{{item.status === 'done'}}">✓</text>
+          </view>
+        </view>
+
+        <!-- 待办主要内容（点击进入编辑） -->
+        <view class="todo-body" bindtap="navToEdit" data-id="{{item._id}}">
+          <view class="todo-title-row">
+            <text class="todo-title {{item.status === 'done' ? 'line-through' : ''}}">{{item.title}}</text>
+            <text class="badge badge-danger" wx:if="{{item.isOverdue && item.status !== 'done'}}">逾期</text>
+            <text class="badge badge-warning" wx:elif="{{item.isToday && item.status !== 'done'}}">今日</text>
+          </view>
+
+          <view class="todo-desc" wx:if="{{item.desc}}">{{item.desc}}</view>
+
+          <!-- 底部时间元信息 -->
+          <view class="todo-meta">
+            <text class="meta-item">⏰ 截止: {{item.formattedDdl}}</text>
+            <text class="meta-item meta-remind" wx:if="{{item.remindText && item.status !== 'done'}}">🔔 {{item.remindText}}</text>
+          </view>
+        </view>
+
+        <!-- 右侧箭头指示 -->
+        <view class="todo-arrow" bindtap="navToEdit" data-id="{{item._id}}">›</view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 悬浮添加按钮 (FAB) -->
+  <view class="fab-btn" bindtap="navToCreate">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

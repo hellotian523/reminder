@@ -251,11 +251,11 @@ Git commit: `feat: implement todo edit and create page with remind offset picker
   - 浮动新建按钮（+）与右上角设置齿轮按钮
   - 完整使用指南与本地自测套件
 
-- [ ] **Step 1: 编写首页 WXML 列表与看板组件**
-- [ ] **Step 2: 编写首页 WXSS 动效与现代极简风格样式**
-- [ ] **Step 3: 编写首页控制器 JS 数据拉取、过滤与下拉刷新逻辑**
-- [ ] **Step 4: 编写全链路 Smoke 模拟验证脚本 tests/e2e_smoke.js**
-- [ ] **Step 5: 运行端到端测试并输出项目 README.md 文档**
+- [x] **Step 1: 编写首页 WXML 列表与看板组件**
+- [x] **Step 2: 编写首页 WXSS 动效与现代极简风格样式**
+- [x] **Step 3: 编写首页控制器 JS 数据拉取、过滤与下拉刷新逻辑**
+- [x] **Step 4: 编写全链路 Smoke 模拟验证脚本 tests/e2e_smoke.js**
+- [x] **Step 5: 运行端到端测试并输出项目 README.md 文档**
 执行 `node tests/e2e_smoke.js`，输出开箱即用导入指引。
-- [ ] **Step 6: 最终提交**
+- [x] **Step 6: 最终提交**
 Git commit: `feat: complete main todo index page and project documentation`
