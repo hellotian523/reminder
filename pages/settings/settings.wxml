@@ -1,0 +1,86 @@
+<!-- pages/settings/settings.wxml -->
+<view class="container">
+  <!-- 顶部状态提示 -->
+  <view class="status-banner {{hasToken ? 'banner-active' : 'banner-warning'}}">
+    <text class="banner-icon">{{hasToken ? '✅' : '⚠️'}}</text>
+    <view class="banner-text">
+      <view class="banner-title">{{hasToken ? '微信推送服务已就绪' : '尚未配置推送 Token'}}</view>
+      <view class="banner-desc">{{hasToken ? '晨报与 DDL 预警将准时推送到你的微信' : '请按照下方指引绑定 Token，否则无法收到微信通知'}}</view>
+    </view>
+  </view>
+
+  <!-- 1. Token 配置卡片 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">PushPlus 微信推送 Token</text>
+    </view>
+    <view class="input-row">
+      <input 
+        class="token-input" 
+        placeholder="在此粘贴你的 PushPlus Token" 
+        value="{{pushplus_token}}" 
+        bindinput="onTokenInput"
+        password="{{hideToken}}"
+      />
+      <view class="toggle-eye" bindtap="toggleEye">
+        <text>{{hideToken ? '👁️' : '🙈'}}</text>
+      </view>
+    </view>
+    <view class="token-actions">
+      <button class="btn-test" bindtap="onTestPush" loading="{{testing}}">发送测试消息</button>
+    </view>
+  </view>
+
+  <!-- 2. 每日晨报设置卡片 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">每日早晨提醒 (晨报)</text>
+    </view>
+    
+    <view class="setting-item">
+      <view class="setting-info">
+        <view class="setting-label">开启每日晨报</view>
+        <view class="setting-sub">每天早晨在微信收到今日未完成待办清单</view>
+      </view>
+      <switch checked="{{morning_report_enabled}}" color="#3B82F6" bindchange="onReportSwitchChange" />
+    </view>
+
+    <view class="setting-item" wx:if="{{morning_report_enabled}}">
+      <view class="setting-info">
+        <view class="setting-label">晨报发送时间</view>
+        <view class="setting-sub">默认每天 08:30 发送</view>
+      </view>
+      <picker mode="time" value="{{morning_report_time}}" bindchange="onTimeChange">
+        <view class="picker-value">{{morning_report_time}} ▾</view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 3. 保存主按钮 -->
+  <button class="btn-primary" bindtap="onSaveSettings" loading="{{saving}}">保存所有设置</button>
+
+  <!-- 4. 获取指引卡片 -->
+  <view class="card guide-card">
+    <view class="card-header">
+      <text class="card-title">📖 1 分钟获取免费 Token 指引</text>
+    </view>
+    <view class="guide-steps">
+      <view class="step-item">
+        <view class="step-num">1</view>
+        <view class="step-content">在微信中搜索并关注公众号：<text class="highlight" bindtap="copyOfficialAccount">pushplus推送加</text> (点击可复制)</view>
+      </view>
+      <view class="step-item">
+        <view class="step-num">2</view>
+        <view class="step-content">进入公众号，点击底部菜单「一对一推送」进入用户中心</view>
+      </view>
+      <view class="step-item">
+        <view class="step-num">3</view>
+        <view class="step-content">复制你的个人 <text class="highlight">Token</text>，粘贴到上方输入框并保存</view>
+      </view>
+      <view class="step-item">
+        <view class="step-num">4</view>
+        <view class="step-content">点击上方「发送测试消息」，若微信收到卡片即代表绑定成功！</view>
+      </view>
+    </view>
+  </view>
+</view>
