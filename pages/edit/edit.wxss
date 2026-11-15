@@ -1,0 +1,122 @@
+/* pages/edit/edit.wxss */
+.form-group {
+  margin-bottom: 28rpx;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-label {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 12rpx;
+}
+
+.required {
+  color: var(--danger-color);
+}
+
+.form-input {
+  background: #F8FAFC;
+  border: 1rpx solid var(--border-color);
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  color: var(--text-main);
+}
+
+.form-textarea {
+  background: #F8FAFC;
+  border: 1rpx solid var(--border-color);
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  color: var(--text-main);
+  min-height: 140rpx;
+  width: 100%;
+}
+
+.card-header {
+  margin-bottom: 24rpx;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.picker-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22rpx 0;
+  border-bottom: 1rpx solid #F1F5F9;
+}
+
+.picker-row:last-child {
+  border-bottom: none;
+}
+
+.picker-label {
+  font-size: 28rpx;
+  color: var(--text-main);
+}
+
+.picker-val-box {
+  font-size: 28rpx;
+  color: #334155;
+  background: #F1F5F9;
+  padding: 10rpx 22rpx;
+  border-radius: 10rpx;
+  font-weight: 500;
+}
+
+.highlight-box {
+  background: var(--primary-light);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.remind-preview {
+  margin-top: 24rpx;
+  background: #EFF6FF;
+  border: 1rpx solid #BFDBFE;
+  border-radius: 12rpx;
+  padding: 18rpx 24rpx;
+  display: flex;
+  align-items: center;
+}
+
+.preview-icon {
+  font-size: 30rpx;
+  margin-right: 14rpx;
+}
+
+.preview-text {
+  font-size: 25rpx;
+  color: #1E40AF;
+}
+
+.preview-time {
+  font-weight: 700;
+  color: #1D4ED8;
+}
+
+.btn-delete {
+  margin-top: 24rpx;
+  background: var(--danger-light);
+  color: var(--danger-color);
+  border: 1rpx solid #FECACA;
+  font-size: 28rpx;
+  font-weight: 500;
+  border-radius: 16rpx;
+  padding: 18rpx 0;
+  width: 100% !important;
+}
+
+.btn-delete:active {
+  opacity: 0.8;
+}
